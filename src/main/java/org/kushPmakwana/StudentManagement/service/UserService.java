@@ -1,7 +1,5 @@
 package org.kushPmakwana.StudentManagement.service;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.kushPmakwana.StudentManagement.dto.userDto.UserRequest;
 import org.kushPmakwana.StudentManagement.dto.userDto.UserResponse;
