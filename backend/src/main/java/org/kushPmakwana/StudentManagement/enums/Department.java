@@ -1,0 +1,9 @@
+package org.kushPmakwana.StudentManagement.enums;
+
+public enum Department {
+    COMPUTER_SCIENCE,
+    INFORMATION_TECHNOLOGY,
+    ARTIFICIAL_INTELLIGENCE,
+    ELECTRONIC_TELECOMMUNICATION,
+    BASIC_SCIENCE_AND_HUMANITIES
+}
