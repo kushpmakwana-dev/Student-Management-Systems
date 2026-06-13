@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "tenant_table")
 @Data
@@ -32,10 +34,14 @@ public class Tenant {
     @Column(nullable = false, unique = true)
     private String aisheCode;
 
-    @Column(nullable = false, unique = true)
-    private String collegeCode;
-
     @Column(nullable = false)
     @Builder.Default
     private boolean active = true;
+
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    private void addCreationTime(){
+        this.createdAt = LocalDateTime.now();
+    }
 }
