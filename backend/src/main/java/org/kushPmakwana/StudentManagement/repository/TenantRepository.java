@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TenantRepository extends JpaRepository<Tenant, Long> {
-    boolean existsByCollegeCode(String collegeCode);
-
     boolean existsByAisheCode(String aisheCode);
 }

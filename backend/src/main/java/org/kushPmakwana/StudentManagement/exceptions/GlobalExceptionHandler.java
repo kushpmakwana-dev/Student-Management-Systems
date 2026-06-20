@@ -22,6 +22,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(TenantAlreadyExists.class)
     public ResponseEntity<ErrorDTO> handleTenantAlreadyExistException(TenantAlreadyExists ex){
         ErrorDTO err = ErrorDTO.builder()
                 .errorMessage("Tenant Already exists")
@@ -32,6 +33,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(AlreadyFoundException.class)
     public ResponseEntity<ErrorDTO> handleAlreadyExistsException(AlreadyFoundException ex){
         ErrorDTO err = ErrorDTO.builder()
                 .errorMessage(ex.getMessage())
@@ -40,5 +42,27 @@ public class GlobalExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UserDisabledException.class)
+    public ResponseEntity<ErrorDTO> handleUserDisabledException(UserDisabledException ex){
+        ErrorDTO err = ErrorDTO.builder()
+                .errorMessage(ex.getMessage())
+                .statusCode(HttpStatus.LOCKED.value())
+                .timeStamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(err, HttpStatus.LOCKED);
+    }
+
+    @ExceptionHandler(AdminNotFoundException.class)
+    public ResponseEntity<ErrorDTO> handleAdminNotFoundException(AdminNotFoundException ex){
+        ErrorDTO err = ErrorDTO.builder()
+                .errorMessage(ex.getMessage())
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .timeStamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
     }
 }

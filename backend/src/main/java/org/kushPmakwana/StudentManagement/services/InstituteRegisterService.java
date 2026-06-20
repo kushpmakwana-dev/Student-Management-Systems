@@ -13,6 +13,7 @@ import org.kushPmakwana.StudentManagement.models.User;
 import org.kushPmakwana.StudentManagement.repository.AdminRepository;
 import org.kushPmakwana.StudentManagement.repository.TenantRepository;
 import org.kushPmakwana.StudentManagement.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.rmi.AlreadyBoundException;
@@ -24,6 +25,7 @@ public class InstituteRegisterService {
     private final AdminRepository adminRepository;
     private final UserRepository userRepository;
     private final TenantRepository tenantRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public void create(InstituteRegisterDTO request){
@@ -53,7 +55,7 @@ public class InstituteRegisterService {
         // Add user
         User user = new User();
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(Role.ADMIN);
 
         User newUser = userRepository.save(user);
