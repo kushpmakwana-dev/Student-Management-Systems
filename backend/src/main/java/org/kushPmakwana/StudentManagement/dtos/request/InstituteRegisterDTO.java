@@ -37,6 +37,9 @@ public class InstituteRegisterDTO {
     private String adminName;
 
     @NotBlank
+    private String adminCode;
+
+    @NotBlank
     @Size(min = 10, max = 10, message = "enter the valid phone number")
     private String phoneNumber;
 

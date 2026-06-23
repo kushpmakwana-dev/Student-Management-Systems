@@ -2,6 +2,7 @@ package org.kushPmakwana.StudentManagement.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import org.kushPmakwana.StudentManagement.enums.Role;
 import org.kushPmakwana.StudentManagement.security.users.AdminUser;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,25 +12,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Data
+@Getter
 public class UserPrincipal implements UserDetails {
 
     private final String email;
     private final Role role;
 
-    private final Long adminId;
+    private final String password;
+//    private final Long adminId;
 
     private final AdminUser adminUser;
 
     public UserPrincipal(
             String email,
             Role role,
-            Long adminId,
+            String password,
+//            Long adminId,
             AdminUser adminUser
     ){
         this.email = email;
         this.role = role;
-        this.adminId = adminId;
+        this.password = password;
+//        this.adminId = adminId;
         this.adminUser = adminUser;
     }
 
@@ -42,7 +46,7 @@ public class UserPrincipal implements UserDetails {
     @Override
     @JsonIgnore
     public String getPassword() {
-        return "";
+        return password;
     }
 
     @Override

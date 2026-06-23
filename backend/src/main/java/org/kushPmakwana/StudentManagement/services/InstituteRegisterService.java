@@ -63,6 +63,7 @@ public class InstituteRegisterService {
         // Add Admin
         Admin admin = new Admin();
         admin.setAdminName(request.getAdminName());
+        admin.setAdminCode(request.getAdminCode());
         admin.setPhoneNumber(request.getPhoneNumber());
         admin.setUser(newUser);
         admin.setTenant(savedTenant);
